@@ -1,2 +1,2 @@
-# Itin-raire
+# Itineraire
 Appli Itinéraire
