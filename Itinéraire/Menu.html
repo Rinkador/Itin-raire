@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="pages/Itinéraire.html" />
+    <link href="pages/Contacts.html" />
+    <title>Menu Dynamique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style du menu */
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .menu {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            margin-right: 20px;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+        }
+
+        .menu li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Contenu des pages */
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <nav>
+        <ul class="menu">
+            <li><a href="pages/Itinéraire.html" data-page="itineraire">Itinéraire</a></li>
+            <li><a href="pages/Contacts.html" data-page="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Pages dynamiques -->
+    <div id="itineraire" class="page active">
+        <h2>Itinéraire</h2>
+    </div>
+
+    <div id="contact" class="page">
+        <h2>Contact</h2>
+    </div>
+
+    <script>
+        // Sélectionne tous les liens du menu
+        const links = document.querySelectorAll(".menu a");
+        const pages = document.querySelectorAll(".page");
+
+        // Ajoute un écouteur d'événements sur chaque lien
+        links.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault(); // Empêche le rechargement de la page
+                
+                let targetPage = this.getAttribute("data-page");
+
+                // Cache toutes les pages
+                pages.forEach(page => page.classList.remove("active"));
+
+                // Affiche la page sélectionnée
+                document.getElementById(targetPage).classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>

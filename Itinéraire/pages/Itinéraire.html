@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Itinéraire des sites importants à Mâcon, Charnay-lès-Mâcon, Sancé, et Crêches-sur-Saône">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>Itinéraires</title>
+    <style>
+        .centered {
+            text-align: center;
+        }
+        
+        .blue-link {
+            color: blue;
+            transition: color 0.3s ease;
+        }
+
+        .blue-link:hover {
+            color: darkblue;
+            text-decoration: underline;
+        }
+
+        .title {
+            text-decoration: underline;
+        }
+
+        .distance, .duration {
+            display: block;
+        }
+
+        .list-item {
+            margin-bottom: 1em;
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            border: 6px double black;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="centered"><u>Itinéraire</u></h1>
+        <br/>
+        <h3>Mâcon</h3>
+        <ol start="1">
+            <li class="list-item"><u>Lycée Cassin</u> - 49 boulevard des Neuf Clés, <a href="tel: 03 85 39 53 50" class="blue-link">03 85 39 53 50</a></li>
+            <li class="list-item"><u>Greta</u> - 49 Boulevard des Neuf Clés, <a href="tel: 03 85 99 19 77" class="blue-link">03 85 99 19 77</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Mairie de Mâcon</u> - quai Lamartine, <a href="tel: 03 85 39 71 00" class="blue-link">03 85 39 71 00</a>, <b>Dépôt CV et Lettre de Motivation</b></li>
+            <li class="list-item"><u>Polyclinique du Val de Sâone</u> - 44 rue Ambroise Paré, <a href="tel: 03 85 23 23 23" class="blue-link">03 85 23 23 23</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Hôpital de Mâcon</u> - 350 boulevard Louis Escande, <a href="tel: 03 85 20 30 40" class="blue-link">03 85 20 30 40</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Camval</u> - 67 Esp. Du Breuil, <a href="tel: 03 85 21 07 70" class="blue-link">03 85 21 07 70</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Saone Achat SAS</u> - 85 rue de la République, <a href="tel: 03 85 20 47 00" class="blue-link">03 85 20 47 00</a></li>
+            <li class="list-item"><u>Mâcon Habitat</u> - 211 rue Président Kennedy, <a href="tel: 03 85 21 63 63" class="blue-link">03 85 21 63 63</a>, <b>Dépôt CV et Lettre de Motivation</b></li>
+            <li class="list-item"><u>Orpi GL Immobilier</u> - 44 bis rue Rambuteau / 32 rue de Lyon, <a href="tel: 03 85 21 11 00" class="blue-link">03 85 21 11 00</a></li>
+            <li class="list-item"><u>ITD System</u> - 33 Rue Rambuteau, <a href="tel: 03 85 53 79 80" class="blue-link">03 85 53 79 80</a></li>
+            <li class="list-item"><u>Mâcon Pièces Auto</u> - 239 rue Flandines, <a href="tel: 03 85 20 29 54" class="blue-link">03 85 20 29 54</a></li>
+            <li class="list-item"><u>Préfecture</u> - 196 Rue de Strasbourg, <a href="tel: 03 85 21 81 00" class="blue-link">03 85 21 81 00</a></li>
+            <li class="list-item"><u>Solution phone QUALIREPAR</u> - 21 Rue Gambetta, <a href="tel: 03 85 33 06 89" class="blue-link">03 85 33 06 89</a></li>
+            <li class="list-item"><u>OPAC Saône-et-Loire</u> - Siège social, 99 Bd Henri Dunant, <a href="tel: 03 85 32 60 00" class="blue-link">03 85 32 60 00</a></li>
+            <li class="list-item"><u>Centre des Finances publiques</u> - 24 Bd Henri Dunant, <a href="tel: 0 809 40 14 01" class="blue-link">0 809 40 14 01</a></li>
+            <li class="list-item"><u>Direction Départementale de l'Emploi, du Travail et des Solidarités (DDETS) de Saône-et-Loire</u> - 173 Bd Henri Dunant, <a href="tel: 03 85 32 72 00" class="blue-link">03 85 32 72 00</a></li>
+            <li class="list-item"><u>Boulanger</u> - RN6 Carrefour Georges Pompidou Mâcon sud, <a href="tel: 08 00 30 30 11" class="blue-link">08 00 30 30 11</a>, <b>Dépôt CV et Lettre de Motivation</b></li>
+            <li class="list-item"><u>Leclerc</u> - 180 Rue Louise Michel, <a href="tel: 03 85 29 58 50" class="blue-link">03 85 29 58 50</a></li>
+            <li class="list-item"><u>Centre Scolaire Notre-Dame Ozanam</u> - 16 Rue des Eglantines, <a href="tel: 03 85 21 09 80" class="blue-link">03 85 21 09 80</a></li>
+            <li class="list-item"><u>Centre Communal Action Sociale</u> - 6 place Carnot, <a href="tel: 03 85 39 71 70" class="blue-link">03 85 39 71 70</a></li>
+            <li class="list-item"><u>Régie Mâconnaise de Services</u> - 32 Rue Frédéric Mistral, <a href="tel: 03 85 20 25 07" class="blue-link">03 85 20 25 07</a></li>
+            <li class="list-item"><u>ACT Automobiles</u> - 86 route de Lyon, <a href="tel: 03 85 34 70 15" class="blue-link">03 85 34 70 15</a></li>
+            <li class="list-item"><u>Mon Assistant Numérique</u> - 42 Rue Tourneloup, <a href="tel: 03 71 41 01 33" class="blue-link">03 71 41 01 33</a></li>
+            <li class="list-item"><u>Collège Louis Pasteur</u> - 50 Imp. Pasteur, <a href="tel: 03 85 38 06 46" class="blue-link">03 85 38 06 46</a></li>
+            <li class="list-item"><u>Département 71</u> - rue des Lingendes, <a href="tel: 03 85 39 66 00" class="blue-link">03 85 39 66 00</a></li>
+            <li class="list-item"><u>CFA Automobil</u> - 288 Rue Claude Bernard, <a href="tel: 03 85 20 97 00" class="blue-link">03 85 20 97 00</a></li>
+            <li class="list-item"><u>France Travail</u> - 1000 Av. Maréchal de Lattre de Tassigny, <a href="tel: 09 72 72 39 49" class="blue-link">09 72 72 39 49</a></li>
+            <li class="list-item"><u>France Travail - Direction territoriale</u> - 1 Cr de l'Évêque Moreau, <a href="tel: 09 72 72 39 49" class="blue-link">09 72 72 39 49</a></li>
+            <li class="list-item"><u>Antenne décentralisée de l'université de Bourgogne</u> - 9 rue de Flacé, <a href="tel: 03 80 39 38 37" class="blue-link">03 80 39 38 37</a></li>
+            <li class="list-item"><u>Direction départementale des finances publiques</u> - 29 Rue Lamartine, <a href="tel: 03 85 39 65 65" class="blue-link">03 85 39 65 65</a></li>
+            <li class="list-item"><u>Agence L'Adresse Charollois Immobilier</u> - 16 Rue Lamartine, <a href="tel: 03 85 33 05 71" class="blue-link">03 85 33 05 71</a></li>
+            <li class="list-item"><u>S.D.I.S. (Service Départemental Incendie et Secours)</u> - 4 rue des Grandes Varennes, <a href="tel: 03 85 35 35 00" class="blue-link">03 85 35 35 00</a>, <b>Dépôt CV et Lettre de Motivation</b></li>
+            <li class="list-item"><u>C.A.F.</u> - 177 rue de Paris, <a href="tel: 3230" class="blue-link">3230</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>CPAM</u> - 113 Rue de Paris, <a href="tel: 32 46" class="blue-link">32 46</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>MSA</u> - 46 Imp. Rue de Paris, <a href="tel: 03 85 39 50 83" class="blue-link">03 85 39 50 83</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Votre Bureau</u> - 303 Rue Fernand Léger, <a href="tel: 03 85 39 97 75" class="blue-link">03 85 39 97 75</a></li>
+            <li class="list-item"><u>Eckes Granini France</u> - 138 rue Lavoisier, <a href="tel: 03 85 20 47 00" class="blue-link">03 85 20 47 00</a></li>
+            <li class="list-item"><u>Auchan</u> - avenue Charles de Gaulle, <a href="tel: 03 85 21 75 75" class="blue-link">03 85 21 75 75</a>, <b>Dépôt CV et Lettre de Motivation</b></li>
+            <li class="list-item"><u>Lycée Lamartine</u> - 381 avenue des Gaises, <a href="tel: 03 85 20 46 00" class="blue-link">03 85 20 46 00</a></li>
+            <li class="list-item"><u>MJC de l'Héritan</u> - 24 rue de l'Héritan, <a href="tel: 03 85 21 91 70" class="blue-link">03 85 21 91 70</a></li>
+            <li class="list-item"><u>Centre sociaux de Mâcon</u> - Contacter la Mairie de Mâcon, <a href="tel: 03 85 39 71 00" class="blue-link">03 85 39 71 00</a></li>
+        </ol>
+    
+    <h3>Charnay-lès-Mâcon</h3>
+        <ol start="1">
+            <li class="list-item"><u>Edenwall</u> - 39 allée Joanny Mommesin, <a href="tel: 09 72 65 68 20" class="blue-link">09 72 65 68 20</a></li>
+            <li class="list-item"><u>Afrelec Industrie SAS</u> - chemin des Jonchères, <a href="tel: 03 85 34 12 06" class="blue-link">03 85 34 12 06</a></li>
+            <li class="list-item"><u>Agence TIM Immobilier</u> - 66 chemin des Jonchères, <a href="tel: 03 85 38 66 66" class="blue-link">03 85 38 66 66</a></li>
+            <li class="list-item"><u>Carrefour Market</u> - 23 Rue de la Chapelle, <a href="tel: 03 85 20 54 54" class="blue-link">03 85 20 54 54</a></li>
+	        <li class="list-item"><u>Xefi Mâcon</u> - 6 Gd Rue de la Coupée, <a href="tel: 03 85 32 05 00" class="blue-link">03 85 32 05 00</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Info Tech 71</u> - 37 Clos Font Matou, <a href="tel: 07 88 62 96 96" class="blue-link">07 88 62 96 96</a></li>
+            <li class="list-item"><u>Maison de retraite Marius Lacrouze</u> - 15 Rue Averroès, <a href="tel: 03 85 20 59 00" class="blue-link">03 85 20 59 00</a></li>
+            <li class="list-item"><u>Nova Services Informatique</u> - 13 Av. de la Gendarmerie, <a href="tel: 03 85 22 05 19" class="blue-link">03 85 22 05 19</a></li>
+        </ol>
+    
+    <h3>Sancé</h3>
+        <ol start="1">
+            <li class="list-item"><u>M.P.2.I. Mâcon Projets Industriels</u> - 3 rue de la Madone, <a href="tel: 03 85 39 10 81" class="blue-link">03 85 39 10 81</a>, <b>Réponse négative</b></li>
+        </ol>
+    
+    <h3>Crêches-sur-Saône</h3>    
+        <ol start="1">
+            <li class="list-item"><u>Darty</u> - carrefour Rue du Beaujolais, <a href="tel: 08 92 01 10 10" class="blue-link">08 92 01 10 10</a>, <b>Réponse négative</b></li>
+            <li class="list-item"><u>Doc-informatik</u> - 627 RN 6, <a href="tel: 07 81 03 24 48" class="blue-link">07 81 03 24 48</a></li>
+        </ol>           
+
+    <h2>Voici l'itinéraire optimisé</h2>
+        <ul id="itineraire">
+            <li class="list-item">
+                Départ: <u>Domicile</u>
+            </li>
+            <li class="list-item">
+                <input type="checkbox" id=""/>
+                <label for=""><u>Insérer une entreprise</u> - et une adresse !</label>
+                <span class="distance">Distance : x km</span>
+                <span class="duree">Durée : y min</span>
+            </li>
+            <li class="list-item">
+                <input type="checkbox" id="">
+                <label for=""><u>Insérer une entreprise</u> - et une adresse !</label>
+                <span class="distance">Distance : x km</span>
+                <span class="duree">Durée : y min</span>
+            </li>
+            <li class="list-item">
+                <input type="checkbox" id="">
+                <label for=""><u>Insérer une entreprise</u> - et une adresse !</label>
+                <span class="distance">Distance : x km</span>
+                <span class="duree">Durée : y min</span>
+            </li>
+            <li class="list-item">
+                <input type="checkbox" id="">
+                <label for=""><u>Insérer une entreprise</u> - et une adresse !</label>
+                <span class="distance">Distance : x km</span>
+                <span class="duree">Durée : y min</span>
+            </li>
+            <li class="list-item">
+                <input type="checkbox" id="">
+                <label for=""><u>Insérer une entreprise</u> - et une adresse !</label>
+                <span class="distance">Distance : x km</span>
+                <span class="duree">Durée : y min</span>
+            </li>
+        </ul>
+
+    <h2>Résultats</h2>
+        <p id="resultats"></p>
+
+    <h1>Carte des adresses de stages</h1>
+        <div id="map"></div>
+
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> <!-- Ajout du script Leaflet -->
+        <script>
+            // 1. Script pour extraire les données et calculer les distances
+            document.addEventListener("DOMContentLoaded", () => {
+                const itineraire = document.getElementById("itineraire").children;
+                let totalDistance = 0; // en km
+                let totalMinutes = 0; // en minutes
+        
+                // Parcourir chaque étape de l'itinéraire
+                for (let i = 1; i < itineraire.length; i++) {
+                    const item = itineraire[i];
+        
+                    // Extraire la distance
+                    const distanceMatch = item.innerHTML.match(/Distance\s?:\s?([\d,.]+)\s?km/);
+                    if (distanceMatch) {
+                        totalDistance += parseFloat(distanceMatch[1].replace(",", "."));
+                    }
+        
+                    // Extraire la durée
+                    const dureeMatch = item.innerHTML.match(/Durée\s?:\s?(\d+)\s?(h|min)?/gi);
+                    if (dureeMatch) {
+                        let totalEtapeMinutes = 0;
+        
+                        dureeMatch.forEach(match => {
+                            const heureMatch = match.match(/(\d+)\s?h/);
+                            const minuteMatch = match.match(/(\d+)\s?min/);
+        
+                            if (heureMatch) {
+                                totalEtapeMinutes += parseInt(heureMatch[1], 10) * 60;
+                            }
+                            if (minuteMatch) {
+                                totalEtapeMinutes += parseInt(minuteMatch[1], 10);
+                            }
+                        });
+        
+                        totalMinutes += totalEtapeMinutes;
+                    }
+                }
+        
+                // Conversion du total de minutes en heures et minutes pour l'affichage
+                const heuresTotales = Math.floor(totalMinutes / 60);
+                const minutesRestantes = totalMinutes % 60;
+        
+                // Affichage des résultats
+                const resultats = document.getElementById("resultats");
+                resultats.innerHTML = `
+                    Distance totale : ${totalDistance.toFixed(1)} km<br>
+                    Durée totale : ${heuresTotales} h ${minutesRestantes} min
+                `;
+            });
+        
+            // 2. Fonction pour sauvegarder l'état des cases cochées dans localStorage
+            function saveCheckboxState() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+                });
+            }
+        
+            // 3. Fonction pour charger l'état des cases cochées depuis localStorage
+            function loadCheckboxState() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    const isChecked = localStorage.getItem(checkbox.id) === 'true'; // 'true' si cochée
+                    checkbox.checked = isChecked;
+                });
+            }
+        
+            // Charger l'état des cases quand la page est ouverte
+            loadCheckboxState();
+        
+            // Sauvegarder l'état des cases à chaque changement
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', saveCheckboxState);
+            });
+        
+            // 4. Fonction d'initialisation de la carte et changement de couleur du texte <b>
+            window.onload = function() {
+                // Changer la couleur des éléments <b> en rouge
+                let boldElements = document.getElementsByTagName("b");
+                for (let i = 0; i < boldElements.length; i++) {
+                    boldElements[i].style.color = "red";
+                }
+        
+                // Initialisation de la carte
+                var map = L.map('map').setView([46.3034, 4.8250], 12); // Coordonnées de Mâcon
+        
+                // Ajouter le fond de carte (OpenStreetMap)
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                }).addTo(map);
+        
+                // Liste d'adresses et leurs coordonnées
+                const addresses = [
+                    // Mâcon
+                    { address: "Lycée Cassin", lat: 46.31429124013014, lng: 4.819746977724868 },
+                    { address: "Mâcon Pièces Auto", lat: 46.28980985502061, lng: 4.816407269331921 },
+                    { address: "Préfecture", lat: 46.30682394281488, lng: 4.834595865518783 },
+                    { address: "Orpi GL Immobilier", lat: 46.30706778721245, lng: 4.827407621037779 },
+                    { address: "Mâcon Habitat", lat: 46.31900959240029, lng: 4.835035313163937 },
+                    { address: "Saone Achat SAS", lat: 46.29283977803444, lng: 4.826120539143748 },
+                    { address: "Mairie de Mâcon", lat: 46.30329546543392, lng: 4.832896551982973 },
+                    { address: "Département 71", lat: 46.308212347786274, lng: 4.834334548932523 },
+                    { address: "Département 71", lat: 46.31436805956496, lng: 4.831184160549251 },
+                    { address: "Boulanger", lat: 46.28644908609492, lng: 4.810354745703831 },
+                    { address: "Solution Phone", lat: 46.302590864528206, lng: 4.829624977796915 },
+                    { address: "Votre Bureau", lat: 46.28494815732646, lng: 4.792770565853393 },
+                    { address: "ACT Automobile", lat: 46.28979927696327, lng: 4.811613610855596 },
+                    { address: "Eckes Granini France", lat: 46.285897485729436, lng: 4.815908764264623 },
+                    { address: "Auchan", lat: 46.324353363345985, lng: 4.839103177774245 },
+                    { address: "Leclerc", lat: 46.32891025224005, lng: 4.829065377779102 },
+                    { address: "CFA Automobile", lat: 46.31238989251935, lng: 4.817617535417226 },
+                    { address: "Antenne Décentralisé de l'Université de Bourgogne", lat: 46.310385990269715, lng: 4.832906344158443 },
+                    { address: "S.D.I.S.", lat: 46.32927445136063, lng: 4.843001239110721 },
+                    { address: "Lycée Lamartine", lat: 46.311906463538186, lng: 4.827172833218134 },
+                    { address: "OPAC Saône-et-Loire - Agence", lat: 46.335978511525326, lng: 4.84131306670214 },
+                    { address: "OPAC Saône-et-Loire - Siège social", lat: 46.31289160718333, lng: 4.83845919863024 },
+                    { address: "Régie Mâconnaise de Services", lat: 46.29276154644954, lng: 4.810446080643988 }, 
+                    { address: "MJC de l'Héritan", lat: 46.31060713791791, lng: 4.828162343845949 },
+                    { address: "Centre social Mosaic Blanchette", lat: 46.29745848108612, lng: 4.826263106878489 },
+                    { address: "Centre social de Marbé", lat: 46.31767559961477, lng: 4.836869643986806 }, 
+                    { address: "Centre social de la Chanaye", lat: 46.292162235076624, lng: 4.809039591291775 }, 
+                    { address: "Centre Communal Action Sociale", lat: 46.30296505558776, lng: 4.830096091259599 },
+                    { address: "Centre Scolaire Notre-Dame Ozanam", lat: 46.31014924201576, lng: 4.825499877785592 }, 
+                    { address: "ITD System", lat: 46.30677686970168, lng: 4.8272085242408105 },
+                    { address: "Centre des finances publiques", lat: 46.314031412047456, lng: 4.839012183325076 },
+                    { address: "Direction départementale des finances publiques", lat: 46.307059034792005, lng: 4.830316794391152 },
+                    { address: "Direction Départementale de l'Emploi, du Travail et des Solidarités (DDETS) de Saône-et-Loire", lat: 46.31354015934622, lng: 4.837052996394469 },
+                    { address: "France Travail", lat: 46.310649062460584, lng: 4.837805122231136 },
+                    { address: "France Travail - Direction territoriale", lat: 46.309343552708384, lng: 4.83358490674192 }, 
+                    { address: "Agence L'Adresse Charollois Immobilier", lat: 46.30646137807289, lng: 4.832117510308417 }, 
+                    { address: "Collège Louis Pasteur", lat: 46.311870472689186, lng: 4.827174996816839 },
+                    { address: "Mon Assistant Numérique", lat: 46.304974481696576, lng: 4.831844467980433 },
+
+
+
+                    // Charnay
+                    { address: "Edenwall", lat: 46.31175103184427, lng: 4.811719420179635 },
+                    { address: "Afrelec Industrie SAS", lat: 46.289316841825716, lng: 4.782238206667803 }, 
+                    { address: "Carrefour Market", lat: 46.30993764245902, lng: 4.8137976889055 },
+                    { address: "Agence TIM Immobilier", lat: 46.28883735684465, lng: 4.782561577848347 },
+                    { address: "Info Tech 71", lat: 46.305206441213436, lng: 4.789527473338679 },
+                    { address: "Maison de retraite Marius Lacrouze", lat: 46.31682239726225, lng: 4.8100364409972896 },
+                    { address: "Nova Services Informatique", lat: 46.30749054304355, lng: 4.811813811687262 },
+
+                    // Crèches-sur-Saône
+                    { address: "Doc-informatik", lat: 46.245343596895495, lng: 4.787194139920577 }
+                ];
+        
+                // Ajouter un marqueur pour chaque adresse sans ouvrir automatiquement le pop-up
+                addresses.forEach(function (loc) {
+                    var marker = L.marker([loc.lat, loc.lng]).addTo(map);
+                    // Ajouter un popup avec l'adresse au marqueur, sans ouvrir le pop-up au départ
+                    marker.bindPopup("<b>" + loc.address + "</b>");
+                });
+            };
+        </script>
+    </body>
+</html>

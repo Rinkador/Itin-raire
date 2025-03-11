@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des entreprises</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        .blue-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Liste des entreprises</h2>
+    <table id="entreprise-table">
+        <thead>
+            <tr>
+                <th>Nom de l'entreprise</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Liste des entreprises et de leurs emails
+        const entreprises = [
+            { nom: "Entreprise A", email: "contactA@example.com" },
+            { nom: "Entreprise B", email: "contactB@example.com" },
+            { nom: "Entreprise C", email: "contactC@example.com" },
+            { nom: "Entreprise D", email: "contactD@example.com" }
+        ]; // Ajoute ici toutes tes entreprises et leurs emails
+
+        // Sélection du tableau
+        const tableBody = document.querySelector("#entreprise-table tbody");
+
+        // Génération dynamique du tableau
+        entreprises.forEach(entreprise => {
+            let row = document.createElement("tr");
+
+            let nameCell = document.createElement("td");
+            nameCell.textContent = entreprise.nom;
+
+            let emailCell = document.createElement("td");
+            emailCell.textContent = entreprise.email;
+
+            let actionCell = document.createElement("td");
+            let contactLink = document.createElement("a");
+            contactLink.textContent = "Contacter";
+            contactLink.href = "mailto:" + entreprise.email;
+            contactLink.classList.add("blue-link");
+
+            actionCell.appendChild(contactLink);
+            row.appendChild(nameCell);
+            row.appendChild(emailCell);
+            row.appendChild(actionCell);
+            tableBody.appendChild(row);
+        });
+    </script>
+
+</body>
+</html>
